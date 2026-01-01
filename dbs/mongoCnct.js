@@ -2,17 +2,17 @@ import { Db, MongoClient } from 'mongodb'
 import 'dotenv/config'
 
 let db
-const client = new MongoClient(process.env.dataBase)
+const client = new MongoClient(process.env.mongoUrl)
 
 /**
  * 
  * @returns {Promise<Db>}
 */
-export async function dbConnection() {
+export async function mongo() {
     try {
         if (!db) {
             await client.connect();
-            // db = client.db("fasting_exe")
+            db = client.db("test_5")
             console.log("db connected")
         }
         return db
@@ -21,4 +21,4 @@ export async function dbConnection() {
     }
 }
 
-export default dbConnection
+export default mongo
